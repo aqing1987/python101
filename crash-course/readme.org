@@ -1,0 +1,2 @@
+* based on
+  The exercises are based on the book <<Python Crash Course>> Eric Matthes
