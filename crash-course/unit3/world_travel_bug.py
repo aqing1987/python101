@@ -18,3 +18,7 @@ desired_places.sort(reverse=True)
 print(desired_places)
 
 print(len(desired_places))
+
+# print(desired_places[8])
+# oom = []
+# print(oom[-1])
