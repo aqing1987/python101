@@ -21,3 +21,6 @@ Run python setup.py -config -auto -sdl2.
 Run python setup.py install (it will take a while).
 Now PyGame should work as expected on macOS.
 ```
+
+## free picture (without license)
+http://pixabay.com
