@@ -43,7 +43,7 @@ def check_events(ai_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(ai_settings, screen, ship, bullets):
+def update_screen(ai_settings, screen, ship, alien, bullets):
     """update images in screen, switch to new screen"""
 
     # repaint screen
@@ -52,6 +52,8 @@ def update_screen(ai_settings, screen, ship, bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
+    # alien is on top of bullet and ship
+    alien.blitme()
 
     # show the latest screen content
     pygame.display.flip()
