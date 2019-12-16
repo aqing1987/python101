@@ -2,6 +2,7 @@ import sys
 
 import pygame
 from bullet import Bullet
+from alien import Alien
 
 
 def fire_bullet(ai_settings, screen, ship, bullets):
@@ -43,7 +44,7 @@ def check_events(ai_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(ai_settings, screen, ship, alien, bullets):
+def update_screen(ai_settings, screen, ship, aliens, bullets):
     """update images in screen, switch to new screen"""
 
     # repaint screen
@@ -53,7 +54,7 @@ def update_screen(ai_settings, screen, ship, alien, bullets):
         bullet.draw_bullet()
     ship.blitme()
     # alien is on top of bullet and ship
-    alien.blitme()
+    aliens.draw(screen)
 
     # show the latest screen content
     pygame.display.flip()
@@ -69,3 +70,21 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+
+def create_fleet(ai_settings, screen, aliens):
+    """create aline fleet"""
+    # create an alien and compute how many aliens can hold in one row
+    # alien gap is the same as alien width
+    alien = Alien(ai_settings, screen)
+    alien_width = alien.rect.width
+    available_space_x = ai_settings.screen_width - 2*alien_width
+    number_aliens_x = int(available_space_x / (2*alien_width))
+
+    # create one row aliens
+    for alien_number in range(number_aliens_x):
+        # create an aline and join in current row
+        alien = Alien(ai_settings, screen)
+        alien.x = alien_width + 2*alien_width*alien_number
+        alien.rect.x = alien.x
+        aliens.add(alien)
