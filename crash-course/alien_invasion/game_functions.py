@@ -60,7 +60,7 @@ def update_screen(ai_settings, screen, ship, aliens, bullets):
     pygame.display.flip()
 
 
-def update_bullets(bullets):
+def update_bullets(aliens, bullets):
     """update bullets position, and delete dispeared bullets"""
 
     # update bullets position
@@ -70,6 +70,10 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+    # check if bullet hit alien
+    # if so, remove the responding bullet and alien
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
 
 def get_number_aliens_x(ai_settings, alien_width):
