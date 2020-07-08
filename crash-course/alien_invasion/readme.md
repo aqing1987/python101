@@ -1,4 +1,10 @@
-## fix pygame in mac 10.15 Catalina
+## how to play
+```sh
+python3 alien_invasion.py
+```
+
+## bug fix
+### fix pygame in mac 10.15 Catalina
 - https://stackoverflow.com/questions/52718921/problems-getting-pygame-to-show-anything-but-a-blank-screen-on-macos-mojave
 
 ```
