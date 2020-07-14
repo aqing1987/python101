@@ -6,22 +6,23 @@ from bullet import Bullet
 from alien import Alien
 
 
-def fire_bullet(ai_settings, screen, ship, bullets):
+def fire_bullet(ai_settings, screen, ship, bullets, music1):
     """if not reached limitation, fire a bullet"""
     # create a new bullet, add it to group
     if len(bullets) < ai_settings.bullets_allowed:
         new_bullet = Bullet(ai_settings, screen, ship)
         bullets.add(new_bullet)
+        music1.play()
 
 
-def check_keydown_events(event, ai_settings, screen, ship, bullets):
+def check_keydown_events(event, ai_settings, screen, ship, bullets, music1):
     """respond to press"""
     if event.key == pygame.K_RIGHT:
         ship.moving_right = True
     elif event.key == pygame.K_LEFT:
         ship.moving_left = True
     elif event.key == pygame.K_SPACE:
-        fire_bullet(ai_settings, screen, ship, bullets)
+        fire_bullet(ai_settings, screen, ship, bullets, music1)
     elif event.key == pygame.K_q:
         sys.exit()
 
@@ -35,7 +36,7 @@ def check_keyup_events(event, ship):
 
 
 def check_events(ai_settings, screen, stats, sb, play_button, ship, aliens,
-        bullets):
+        bullets, music1):
     """respond to keyboard and mouse"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -45,7 +46,7 @@ def check_events(ai_settings, screen, stats, sb, play_button, ship, aliens,
             check_play_button(ai_settings, screen, stats, sb, play_button,
                 ship, aliens, bullets, mouse_x, mouse_y)
         elif event.type == pygame.KEYDOWN:
-            check_keydown_events(event, ai_settings, screen, ship, bullets)
+            check_keydown_events(event, ai_settings, screen, ship, bullets, music1)
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
 

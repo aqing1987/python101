@@ -32,10 +32,15 @@ def run_game():
     # create alien fleet
     gf.create_fleet(ai_settings, screen, ship, aliens)
 
+    # background music
+    #pygame.mixer.music.load("sounds/111.mp3")
+    #pygame.mixer.music.play(loops=-1, start=0.0)
+    music1 = pygame.mixer.Sound("sounds/222.wav")
+
     # start main
     while True:
         gf.check_events(ai_settings, screen, stats, sb, play_button, ship,
-            aliens, bullets)
+            aliens, bullets, music1)
 
         if stats.game_active:
             ship.update()
