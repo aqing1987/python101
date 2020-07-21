@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt
 #y_values = [1, 4, 9, 16, 25]
 x_values = list(range(1, 1001))
 y_values = [ x**2 for x in x_values ]
-plt.scatter(x_values, y_values, c='red', edgecolor='none', s=30)
+
+plt.scatter(x_values, y_values, c=y_values, cmap=plt.cm.Blues,
+    edgecolor='none', s=30)
 
 y_values1 = [ x**3 for x in x_values ]
 plt.scatter(x_values, y_values1, c=(0, 0, 0.8), edgecolor='none', s=30)
