@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 
 from matplotlib import pyplot as plt
 
@@ -12,20 +13,25 @@ with open(filename) as f:
     for index, column_header in enumerate(header_row):
         print(index, column_header)
     """
-    highs = []
+    # extract datetime and max temperature
+    dates, highs = [], []
     for row in reader:
+        # 0 datetime
+        current_date = datetime.strptime(row[0], "%Y-%m-%d")
+        dates.append(current_date)
         # 1 Max TemperatureF
         high = int(row[1])
         highs.append(high)
-    print(highs)
+    #print(highs)
 
 # draw according to data
 fig = plt.figure(dpi=128, figsize=(10, 6))
-plt.plot(highs, c='red')
+plt.plot(dates, highs, c='red')
 
 # set figure format
 plt.title("Daily high temperature, July 2014", fontsize=24)
 plt.xlabel("", fontsize=16)
+fig.autofmt_xdate()
 plt.ylabel("Temperature (F)", fontsize=16)
 plt.tick_params(axis='both', which='major', labelsize=16)
 
