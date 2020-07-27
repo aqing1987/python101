@@ -6,5 +6,13 @@ with open(filename) as f:
     header_row = next(reader)
     #print(header_row)
 
+    """
     for index, column_header in enumerate(header_row):
         print(index, column_header)
+    """
+    highs = []
+    for row in reader:
+        # 1 Max TemperatureF
+        high = int(row[1])
+        highs.append(high)
+    print(highs)
