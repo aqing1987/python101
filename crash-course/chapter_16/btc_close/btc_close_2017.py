@@ -1,5 +1,6 @@
 import json
 import pygal
+import math
 
 # load data to list
 with open('btc_close_2017.json') as f:
@@ -24,5 +25,6 @@ line_chart.title = "收盘价"
 line_chart.x_labels = dates
 N = 20 # x坐标轴每隔20天显示一次
 line_chart.x_labels_major = dates[::N]
-line_chart.add('收盘价', close)
-line_chart.render_to_file('收盘价折线图.svg')
+close_log = [math.log10(_) for _ in close]
+line_chart.add('收盘价', close_log)
+line_chart.render_to_file('close_log.svg')
